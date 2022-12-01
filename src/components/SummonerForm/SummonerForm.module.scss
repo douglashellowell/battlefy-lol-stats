@@ -1,0 +1,31 @@
+.form {
+  padding: 3rem;
+  display: grid;
+  gap: 1rem;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  grid-template-areas: 'name name' 'region type' 'submit submit';
+
+  & > label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.summonerName {
+  grid-area: name;
+}
+
+.region {
+  grid-area: region;
+}
+
+.type {
+  grid-area: type;
+}
+
+.submit {
+  grid-area: submit;
+}
