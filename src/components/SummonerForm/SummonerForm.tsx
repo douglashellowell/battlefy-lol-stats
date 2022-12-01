@@ -4,9 +4,9 @@ import styles from './SummonerForm.module.scss';
 
 const SummonerForm = () => {
   const [formInputs, setFormInputs] = useState<SummonerSearchOptions>({
-    region: '',
+    region: 'na1',
     summonerName: '',
-    type: '',
+    type: 'ranked',
   });
 
   return (
