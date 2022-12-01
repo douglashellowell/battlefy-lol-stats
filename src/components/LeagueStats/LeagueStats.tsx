@@ -3,10 +3,10 @@ import SummonerForm from '../SummonerForm/SummonerForm';
 import styles from './LeagueStats.module.scss';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import Loading from '../Loading/Loading';
 import SelectedSummonerData from '../SelectedSummonerData/SelectedSummonerData';
 import { fetchMatchStatsBySummonerName } from '../../api';
+import MatchList from '../MatchList/MatchList';
 
 const LeagueStats = () => {
   const [searchParams, setSearchParams] = useState<SummonerSearchOptions>({
@@ -35,8 +35,6 @@ const LeagueStats = () => {
 
   const showLoadingSpinner = isLoading && !isError;
 
-  console.log(data);
-
   return (
     <div className={styles.container}>
       <SummonerForm onFormSubmit={handleFormSubmit} />
@@ -48,6 +46,10 @@ const LeagueStats = () => {
       ) : data ? (
         <>
           <SelectedSummonerData selectedSummoner={data.summoner} />
+          <MatchList
+            matches={data.matches}
+            selectedSummoner={data.summoner.name}
+          />
         </>
       ) : null}
     </div>

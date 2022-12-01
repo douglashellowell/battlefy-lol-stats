@@ -63,7 +63,7 @@ interface Info {
   tournamentCode: string;
 }
 
-interface Participant {
+export interface Participant {
   allInPings: number;
   assistMePings: number;
   assists: number;
