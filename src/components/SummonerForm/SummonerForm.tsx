@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { SummonerSearchOptions } from '../../types';
+import {
+  gameType,
+  regions,
+  SummonerSearchOptions,
+  TGameType,
+  TRegion,
+} from '../../types';
 import styles from './SummonerForm.module.scss';
 
 const SummonerForm = () => {
@@ -28,33 +34,39 @@ const SummonerForm = () => {
       </label>
       <label htmlFor="regionInput" className={styles.region}>
         Region:
-        <input
-          type="text"
+        <select
           name="region"
           id="regionInput"
-          value={formInputs.region}
           onChange={(e) =>
             setFormInputs((prevInputs) => ({
               ...prevInputs,
-              region: e.target.value,
+              region: e.target.value as TRegion,
             }))
           }
-        />
+          value={formInputs.region}
+        >
+          {regions.map((region) => {
+            return <option value={region}>{region}</option>;
+          })}
+        </select>
       </label>
       <label htmlFor="typeInput" className={styles.type}>
         Game Type:
-        <input
-          type="text"
+        <select
           name="type"
           id="typeInput"
           value={formInputs.type}
           onChange={(e) =>
             setFormInputs((prevInputs) => ({
               ...prevInputs,
-              type: e.target.value,
+              type: e.target.value as TGameType,
             }))
           }
-        />
+        >
+          {gameType.map((type) => {
+            return <option value={type}>{type}</option>;
+          })}
+        </select>
       </label>
       <button type="submit" className={styles.submit}>
         GO
