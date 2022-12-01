@@ -1,19 +1,16 @@
 import { MatchStatApiResponse, SummonerSearchOptions } from '../../types';
 import SummonerForm from '../SummonerForm/SummonerForm';
 import styles from './LeagueStats.module.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Loading/Loading';
 import SelectedSummonerData from '../SelectedSummonerData/SelectedSummonerData';
 import { fetchMatchStatsBySummonerName } from '../../api';
 import MatchList from '../MatchList/MatchList';
+import { SearchParamsContext } from '../../contexts/SearchParamsContext';
 
 const LeagueStats = () => {
-  const [searchParams, setSearchParams] = useState<SummonerSearchOptions>({
-    region: 'na1',
-    summonerName: '',
-    type: 'ranked',
-  });
+  const [searchParams, setSearchParams] = useContext(SearchParamsContext);
 
   const handleFormSubmit = (formData: SummonerSearchOptions) => {
     setSearchParams(formData);

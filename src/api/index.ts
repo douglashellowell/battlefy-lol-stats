@@ -12,7 +12,7 @@ export async function fetchMatchStatsBySummonerName({
       params: {
         platform: region,
         type: type,
-        count: 5, // Add form option later??
+        count: 1, // Add form option later??
       },
     }
   );
