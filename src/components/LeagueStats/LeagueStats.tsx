@@ -1,9 +1,12 @@
-import { SummonerSearchOptions } from '../../types';
+import { MatchStatApiResponse, SummonerSearchOptions } from '../../types';
 import SummonerForm from '../SummonerForm/SummonerForm';
 import styles from './LeagueStats.module.scss';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import Loading from '../Loading/Loading';
+import SelectedSummonerData from '../SelectedSummonerData/SelectedSummonerData';
+import { fetchMatchStatsBySummonerName } from '../../api';
 
 const LeagueStats = () => {
   const [searchParams, setSearchParams] = useState<SummonerSearchOptions>({
@@ -16,35 +19,37 @@ const LeagueStats = () => {
     setSearchParams(formData);
   };
 
-  const { data, isError, isLoading } = useQuery(
+  const { data, isError, isLoading } = useQuery<{}, {}, MatchStatApiResponse>(
     [
       'matches',
       searchParams.summonerName,
       searchParams.region,
       searchParams.type,
     ],
-    () =>
-      axios.get(
-        `https://lol-stats.onrender.com/stats/by-name/${searchParams.summonerName}`,
-        {
-          params: {
-            platform: searchParams.region,
-            type: searchParams.type,
-            count: 5, // Add form option later??
-          },
-        }
-      ),
+    () => fetchMatchStatsBySummonerName(searchParams),
     {
       enabled: searchParams.summonerName !== '',
       retry: false,
     }
   );
 
+  const showLoadingSpinner = isLoading && !isError;
+
+  console.log(data);
+
   return (
     <div className={styles.container}>
       <SummonerForm onFormSubmit={handleFormSubmit} />
 
-      {JSON.stringify(data)}
+      {showLoadingSpinner ? (
+        <Loading />
+      ) : isError ? (
+        <p>err!</p>
+      ) : data ? (
+        <>
+          <SelectedSummonerData selectedSummoner={data.summoner} />
+        </>
+      ) : null}
     </div>
   );
 };
