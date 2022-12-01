@@ -8,21 +8,31 @@ import {
 } from '../../types';
 import styles from './SummonerForm.module.scss';
 
-const SummonerForm = () => {
+type SummonerFormProps = {
+  onFormSubmit: (formData: SummonerSearchOptions) => void;
+};
+
+const SummonerForm = ({ onFormSubmit }: SummonerFormProps) => {
   const [formInputs, setFormInputs] = useState<SummonerSearchOptions>({
     region: 'na1',
     summonerName: '',
     type: 'ranked',
   });
 
+  const handleSubmit = (submitEvent: React.FormEvent<HTMLFormElement>) => {
+    submitEvent.preventDefault();
+    onFormSubmit(formInputs);
+  };
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="summonerNameInput" className={styles.summonerName}>
         Summoner Name:
         <input
           type="text"
           name="summonerName"
           id="summonerNameInput"
+          required
           value={formInputs.summonerName}
           onChange={(e) =>
             setFormInputs((prevInputs) => ({
@@ -46,7 +56,11 @@ const SummonerForm = () => {
           value={formInputs.region}
         >
           {regions.map((region) => {
-            return <option value={region}>{region}</option>;
+            return (
+              <option key={region} value={region}>
+                {region}
+              </option>
+            );
           })}
         </select>
       </label>
@@ -64,7 +78,11 @@ const SummonerForm = () => {
           }
         >
           {gameType.map((type) => {
-            return <option value={type}>{type}</option>;
+            return (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            );
           })}
         </select>
       </label>
