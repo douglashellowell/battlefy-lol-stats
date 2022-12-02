@@ -93,7 +93,7 @@ const MatchCard = ({ match, selectedSummoner }: MatchCardProps) => {
         </ul>
       </div>
       {/* perks */}
-      <div className={styles.block}>
+      <div className={`${styles.block} ${styles.perks} `}>
         {selectedSummonerProfile.perks.styles.map((perk) => {
           return (
             <div key={perk.style}>
@@ -129,6 +129,8 @@ const MatchCard = ({ match, selectedSummoner }: MatchCardProps) => {
             alt="flex stat"
           />
         </span>
+
+        <p>Creep score: {selectedSummonerProfile.neutralMinionsKilled}</p>
       </div>
       {/* teams */}
       <div className={styles.block}>

@@ -25,7 +25,6 @@
   & button {
     text-align: left;
     background: none;
-    overflow-x: hidden;
   }
 }
 
@@ -39,7 +38,7 @@
 
 .champLevel {
   background: #000;
-  width: 40px;
+  min-width: 40px;
   text-align: center;
   font-size: 1rem;
 }

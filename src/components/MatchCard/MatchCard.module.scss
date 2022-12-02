@@ -1,5 +1,6 @@
 .block {
-  border: 1px dashed hsl(0, 0%, 0%);
+  // border: 1px dashed hsl(0, 0%, 0%);
+  padding: 0 0.5rem;
 }
 
 .redTeam {
@@ -13,7 +14,7 @@
 
 .matchCard {
   display: grid;
-
+  padding: 1rem;
   grid-template-columns: 1fr 1fr 1fr 2fr;
 }
 
@@ -37,6 +38,7 @@
 .champLevel {
   background: white;
   color: black;
+  // width: 1000px;
   padding: 0.8rem;
   margin-right: 1rem;
 }
@@ -59,4 +61,9 @@
 
 .deaths {
   color: hsl(0, 70%, 40%);
+}
+
+.perks {
+  display: flex;
+  flex-direction: column;
 }
