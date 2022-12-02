@@ -1,8 +1,13 @@
 .container {
+  background: hsl(221deg 20% 15%);
+  color: white;
+
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  margin: 1rem 0;
   & h2,
   p {
     margin: 0;

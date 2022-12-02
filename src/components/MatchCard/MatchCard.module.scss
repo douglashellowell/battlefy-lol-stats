@@ -1,6 +1,62 @@
 .block {
-  //   width: 300px;
-  //   height: 300px;
-  background: red;
-  border: 1px solid black;
+  border: 1px dashed hsl(0, 0%, 0%);
+}
+
+.redTeam {
+  background: hsl(0, 41%, 10%);
+  color: hsl(0, 25%, 76%);
+}
+.blueTeam {
+  background: hsl(205, 41%, 10%);
+  color: hsl(205, 20%, 70%);
+}
+
+.matchCard {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+}
+
+.matchOutcome {
+  font-size: 3rem;
+  font-weight: bolder;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.primaryBox {
+  & img {
+    width: 100%;
+  }
+}
+
+.champName {
+  text-align: center;
+}
+
+.champLevel {
+  background: white;
+  color: black;
+  padding: 0.8rem;
+  margin-right: 1rem;
+}
+
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.summonerSpell {
+  width: 40px;
+}
+
+.kda {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.deaths {
+  color: hsl(0, 70%, 40%);
 }

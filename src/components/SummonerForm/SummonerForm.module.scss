@@ -2,6 +2,8 @@
   padding: 3rem;
   display: grid;
   gap: 1rem;
+  background: hsl(231, 18%, 8%);
+  color: hsl(231 20% 50%);
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -9,8 +11,30 @@
   grid-template-areas: 'name name' 'region type' 'submit submit';
 
   & > label {
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
+  }
+
+  & input,
+  select {
+    font-size: 1.2rem;
+
+    background: hsl(229deg 20% 90%);
+    border: none;
+    padding: 0.5rem;
+
+    transition: box-shadow 200ms ease-out;
+
+    &:focus {
+      box-shadow: 0px 0px 18px 0px hsla(234, 100%, 100%, 0.4);
+      // outline-color: hsla(234, 100%, 40%, 0.3);
+      outline: none;
+    }
+    &::selection {
+      background: hsla(234, 100%, 15%, 1);
+      text-shadow: 0px 0px 18px 0px hsla(234, 100%, 100%, 0.4);
+    }
   }
 }
 
@@ -28,4 +52,19 @@
 
 .submit {
   grid-area: submit;
+
+  margin-top: 1rem;
+
+  box-shadow: 0px 0px 41px 0px hsla(234, 100%, 100%, 0.25);
+  transition: box-shadow 400ms;
+  &:hover,
+  &:focus {
+    background: hsl(234, 60%, 60%);
+    box-shadow: 0px 0px 10px 0px hsla(234, 100%, 60%, 1);
+  }
+
+  &:active {
+    color: white;
+    background: hsl(234, 60%, 50%);
+  }
 }

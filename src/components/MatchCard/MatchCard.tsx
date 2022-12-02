@@ -3,6 +3,7 @@ import ItemIcon from '../Icons/ItemIcon/ItemIcon';
 import TeamList from '../TeamList/TeamList';
 import styles from './MatchCard.module.scss';
 import summonerSpells from '../../assets/summonerSpells.json';
+import classnames from 'classnames';
 
 type MatchCardProps = {
   match: Match;
@@ -26,26 +27,45 @@ const MatchCard = ({ match, selectedSummoner }: MatchCardProps) => {
   );
 
   return (
-    <article>
+    <article
+      className={classnames(styles.matchCard, {
+        [styles.redTeam]: selectedSummonerProfile.teamId === 100,
+        [styles.blueTeam]: selectedSummonerProfile.teamId === 200,
+      })}
+    >
       {/* pic , win/loss , level, cham name*/}
-      <div className={styles.block}>
-        {<p>{isWinningMatch ? 'Victory' : 'Defeat'}</p>}
+      <div className={`${styles.block} ${styles.primaryBox}`}>
+        {
+          <p className={styles.matchOutcome}>
+            {isWinningMatch ? 'Victory' : 'Defeat'}
+          </p>
+        }
         <img
           src={`images/champion/${selectedSummonerProfile.championName}.png`}
           alt={selectedSummonerProfile.championName}
         />
-        <p>{selectedSummonerProfile.championName}</p>
+        <div>
+          <span className={styles.champLevel}>
+            {selectedSummonerProfile.champLevel}
+          </span>
+          <span className={styles.champName}>
+            {selectedSummonerProfile.championName}
+          </span>
+        </div>
       </div>
       {/* KDA, spells items*/}
       <div className={styles.block}>
-        <p>
+        <p className={styles.kda}>
           <span>{selectedSummonerProfile.kills}</span> /{' '}
-          <span>{selectedSummonerProfile.deaths}</span> /{' '}
-          <span>{selectedSummonerProfile.assists}</span>
+          <span className={styles.deaths}>
+            {selectedSummonerProfile.deaths}
+          </span>{' '}
+          / <span>{selectedSummonerProfile.assists}</span>
         </p>
 
         {chosenSummonerSpell1 ? (
           <img
+            className={styles.summonerSpell}
             src={`/images/spells/summonerSpells/${chosenSummonerSpell1[0]}.png`}
             alt={chosenSummonerSpell1[1].name}
           />
@@ -54,6 +74,7 @@ const MatchCard = ({ match, selectedSummoner }: MatchCardProps) => {
         )}
         {chosenSummonerSpell2 ? (
           <img
+            className={styles.summonerSpell}
             src={`/images/spells/summonerSpells/${chosenSummonerSpell2[0]}.png`}
             alt={chosenSummonerSpell2[1].name}
           />
@@ -61,7 +82,7 @@ const MatchCard = ({ match, selectedSummoner }: MatchCardProps) => {
           <p>spell not found</p>
         )}
 
-        <ul>
+        <ul className={styles.itemList}>
           <ItemIcon itemNumber={selectedSummonerProfile.item0} />
           <ItemIcon itemNumber={selectedSummonerProfile.item1} />
           <ItemIcon itemNumber={selectedSummonerProfile.item2} />

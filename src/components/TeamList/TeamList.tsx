@@ -56,7 +56,7 @@ const Team = ({ team }: TeamProps) => {
             })}
           >
             <img src={`images/champion/${partyMember.championName}.png`} />
-            <div>
+            <div className={styles.champLevel}>
               <p>{partyMember.champLevel}</p>
             </div>
             <button
